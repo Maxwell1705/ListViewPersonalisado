@@ -1,22 +1,33 @@
 package com.example.listviewpersonalisado;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
+import androidx.appcompat.widget.Toolbar;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    ListView lv;
+    private ListView lv;
+    private SearchView searchView;
+    private AdapterAlumno adaptador;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         ArrayList<alumnoItem> list = new ArrayList<>();
 
@@ -86,14 +97,40 @@ public class MainActivity extends AppCompatActivity {
                 R.drawable.x2020030865));
 
         lv = findViewById(R.id.listview1);
-        ListAdapter adaptador = new AdapterAlumno(this, R.layout.alumnoitem_layout, R.id.lblMatriculas, list);
+        adaptador = new AdapterAlumno(this, list);
         lv.setAdapter(adaptador);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Toast.makeText(adapterView.getContext(),getString(R.string.msgSeleccionado).toString()
-                                +" "+((alumnoItem) adapterView.getItemAtPosition(i)).getTextNombreAlumno(),
+                                +" "+((alumnoItem) adapterView.getItemAtPosition(i)).getTextMatricula(),
                         Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.searchview, menu);
+        MenuItem menuItem = menu.findItem(R.id.menu_search);
+        searchView = (SearchView) menuItem.getActionView();
+        setupSearchView();
+
+        return true;
+    }
+
+    public void setupSearchView() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                if(adaptador != null) {
+                    adaptador.getFilter().filter(s);
+                }
+                return true;
             }
         });
     }

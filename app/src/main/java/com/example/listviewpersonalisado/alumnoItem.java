@@ -7,8 +7,8 @@ public class alumnoItem {
 
     // Constructor de parámetros
     public alumnoItem(String text, String text2, Integer fotoId) {
-        this.textNombreAlumno = text2;
-        this.textMatricula = text;
+        this.textNombreAlumno = text;
+        this.textMatricula = text2;
         this.fotoAlumno = fotoId;
     }
 
