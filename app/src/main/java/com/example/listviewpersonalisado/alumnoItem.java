@@ -3,21 +3,27 @@ package com.example.listviewpersonalisado;
 public class alumnoItem {
 
     private int id;
+    private String carrera;
     private String textNombreAlumno;
     private String textMatricula;
     private Integer fotoAlumno;
 
-    // Constructor de parámetros
-    public alumnoItem(String text, String text2, Integer fotoId) {
+    public alumnoItem(){}
+
+    public alumnoItem(String text, String text2, Integer fotoId, String carrera) {
         this.textNombreAlumno = text;
         this.textMatricula = text2;
         this.fotoAlumno = fotoId;
+        this.carrera = carrera;
     }
 
     public int getTextId() { return id; }
-    public void SetTextId(int id) {
+    public void setTextId(int id) {
         this.id = id;
     }
+    public String getTextCarrera() { return carrera; }
+    public void setTextCarrera(String carrera) { this.carrera = carrera; }
+
 
     public String getTextNombreAlumno() { return textNombreAlumno; }
 

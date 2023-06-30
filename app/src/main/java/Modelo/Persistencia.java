@@ -1,6 +1,6 @@
 package Modelo;
 
-import com.example.listviewpersonalizado.alumnoItem;
+import com.example.listviewpersonalisado.alumnoItem;
 
 public interface Persistencia {
 

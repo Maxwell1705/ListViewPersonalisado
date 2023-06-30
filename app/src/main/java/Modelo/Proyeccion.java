@@ -2,7 +2,7 @@ package Modelo;
 
 import android.database.Cursor;
 
-import com.example.listviewpersonalizado.alumnoItem;
+import com.example.listviewpersonalisado.alumnoItem;
 
 import java.util.ArrayList;
 
