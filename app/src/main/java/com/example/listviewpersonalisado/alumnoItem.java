@@ -1,6 +1,8 @@
 package com.example.listviewpersonalisado;
 
 public class alumnoItem {
+
+    private int id;
     private String textNombreAlumno;
     private String textMatricula;
     private Integer fotoAlumno;
@@ -12,7 +14,11 @@ public class alumnoItem {
         this.fotoAlumno = fotoId;
     }
 
-    // Getters & Setters
+    public int getTextId() { return id; }
+    public void SetTextId(int id) {
+        this.id = id;
+    }
+
     public String getTextNombreAlumno() { return textNombreAlumno; }
 
     public void setTextNombreAlumno(String textNombreAlumno) {
